@@ -1,0 +1,5 @@
+package com.ust.SkillHive.dto;
+
+public class CourseDetailsDto {
+
+}

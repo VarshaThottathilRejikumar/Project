@@ -1,0 +1,25 @@
+package com.ust.SkillHive.service;
+
+import org.springframework.stereotype.Service;
+
+import com.ust.SkillHive.model.CourseDetails;
+import com.ust.SkillHive.repository.CourseDetailsRepository;
+
+@Service
+public class CourseDetailsService {
+	
+	private final CourseDetailsRepository cdr;
+	
+	public CourseDetailsService(CourseDetailsRepository cdr) {
+		this.cdr=cdr;
+	}
+	
+	
+	public CourseDetails createCourseDetails(CourseDetails courseDetails) {
+		return cdr.save(courseDetails);
+	}
+	
+	
+	
+
+}

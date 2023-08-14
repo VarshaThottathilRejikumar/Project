@@ -1,0 +1,84 @@
+package com.ust.SkillHive.model;
+
+import javax.persistence.Column;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="Course_Details")
+public class CourseDetails {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "courseId")
+	private Long id;
+	
+	private Long topicId;
+	private String topicName;
+	private String topicFile;
+	
+	
+	public CourseDetails() {}
+
+
+	public CourseDetails(Long courseId, Long topicId, String topicName, String topicFile) {
+		super();
+		this.id = courseId;
+		this.topicId = topicId;
+		this.topicName = topicName;
+		this.topicFile = topicFile;
+	}
+
+
+	public Long getCourseId() {
+		return id;
+	}
+
+
+	public void setCourseId(Long courseId) {
+		this.id = courseId;
+	}
+
+
+	public Long getTopicId() {
+		return topicId;
+	}
+
+
+	public void setTopicId(Long topicId) {
+		this.topicId = topicId;
+	}
+
+
+	public String getTopicName() {
+		return topicName;
+	}
+
+
+	public void setTopicName(String topicName) {
+		this.topicName = topicName;
+	}
+
+
+	public String getTopicFile() {
+		return topicFile;
+	}
+
+
+	public void setTopicFile(String topicFile) {
+		this.topicFile = topicFile;
+	}
+
+
+	@Override
+	public String toString() {
+		return "CourseDetails [id=" + id + ", topicId=" + topicId + ", topicName=" + topicName + ", topicFile="
+				+ topicFile + "]";
+	}
+	
+	
+	
+}

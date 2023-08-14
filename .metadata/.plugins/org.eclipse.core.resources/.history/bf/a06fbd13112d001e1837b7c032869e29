@@ -1,0 +1,11 @@
+package com.ust.SkillHive.dto;
+
+public class CourseDetailsDto {
+	
+	private Long courseId;
+	private Long topicId;
+	private String topicName;
+	private String topicFile;
+	
+	
+}

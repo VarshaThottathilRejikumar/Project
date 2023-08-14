@@ -1,0 +1,73 @@
+package com.ust.SkillHive.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ust.SkillHive.exception.CourseNotFoundException;
+import com.ust.SkillHive.model.CourseDetails;
+import com.ust.SkillHive.repository.CourseDetailsRepository;
+
+
+
+@Service
+public class CourseDetailsService {
+	
+	@Autowired
+	private CourseDetailsRepository cdr;
+	
+	
+	public CourseDetails createCourseDetails(CourseDetails courseDetails) {
+		return cdr.save(courseDetails);
+	}
+	
+	public CourseDetails getCourseTopic(Long topicId){
+		CourseDetails topic=null;
+		Optional<CourseDetails> temp= cdr.findById(topicId);
+		if(temp.isPresent()) 
+		{
+			topic=temp.get();
+			//return topic.getTopicName();
+		}
+		return topic;
+		//throw new CourseNotFoundException("Topic not found with Id " + topicId);
+	}
+
+	public CourseDetails getCourseTopicId(Long topicId){
+		CourseDetails topic=null;
+		Optional<CourseDetails> temp= cdr.findById(topicId);
+		if(temp.isPresent()) {
+			topic=temp.get();
+			return topic;
+		}
+		throw new CourseNotFoundException("Topic not found with Id " + topicId);
+	}
+	
+	
+	public List<CourseDetails> getAll() {
+		return cdr.findAll();
+	}
+	
+	public CourseDetails update(CourseDetails courseDetails, Long id) {
+		CourseDetails temp=null;
+		Optional<CourseDetails> course=cdr.findById(id);
+	if(course.isPresent()) {
+		temp=cdr.save(courseDetails);
+		
+	}
+	return temp;
+	}
+	
+	public CourseDetails deleteCourseDetails(Long id) {
+		Optional<CourseDetails> coursedelete=cdr.findById(id);
+		CourseDetails temp=null;
+		if(coursedelete.isPresent()) {
+			temp=coursedelete.get();
+			cdr.delete(temp);
+		}
+		return temp;
+	}
+	
+}

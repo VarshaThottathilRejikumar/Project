@@ -1,0 +1,6 @@
+package com.ust.SkillHive.exception;
+
+public class CourseNotFoundException extends RuntimeException {
+	super(message);
+
+}

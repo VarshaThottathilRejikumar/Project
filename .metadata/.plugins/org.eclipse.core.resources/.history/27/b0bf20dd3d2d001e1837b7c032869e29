@@ -1,0 +1,52 @@
+package com.ust.SkillHive.service;
+
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import com.ust.SkillHive.exception.CourseNotFoundException;
+import com.ust.SkillHive.model.CourseDetails;
+import com.ust.SkillHive.repository.CourseDetailsRepository;
+
+
+
+@Service
+public class CourseDetailsService {
+	
+	private final CourseDetailsRepository cdr;
+	
+	public CourseDetailsService(CourseDetailsRepository cdr) {
+		this.cdr=cdr;
+	}
+	
+	
+	public CourseDetails createCourseDetails(CourseDetails courseDetails) {
+		return cdr.save(courseDetails);
+	}
+	
+	public String getCourseTopic(Long courseId){
+		CourseDetails cd=null;
+		Optional<CourseDetails> course = cdr.findById(courseId);
+		cd=course.get();
+		return cd.getTopicName();
+	}
+	
+	public Long getCourseDetails(Long courseId){
+		CourseDetails cd=null;
+		Optional<CourseDetails> course = cdr.findById(courseId);
+		cd=course.get();
+		return cd.getTopicId();
+	}
+	
+	public CourseDetails getCourse(Long courseId){
+		CourseDetails cd=null;
+		Optional<CourseDetails> course = cdr.findById(courseId);
+		if(course.isPresent()) {
+			cd=course.get();
+			return cd;
+		}
+		throw new CourseNotFoundException("Course not found with Id: " + courseId);
+	}
+	
+
+}
